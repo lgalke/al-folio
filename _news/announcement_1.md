@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2018-12-21
 inline: true
 ---
 
-A simple inline announcement.
+Our paper on word matrices was accepted at [ICLR 2019](iclr.cc). :v:
