@@ -2,7 +2,7 @@
 layout: about
 permalink: /
 title: <strong>Lukas</strong> Paul Achatius Galke
-description: Kiel University / ZBW
+description: machine learning / natural language processing
 
 profile:
   align: right
@@ -15,9 +15,10 @@ news: true
 social: true
 ---
 
-Hi there,
-
 I am a PhD student at [Kiel University](www.uni-kiel.de/en) since 2017.
 My interests comprise machine learning and natural language processing.
+I received both my bachelor's degree (2013) and my master's degree (2017) in
+computer science from Kiel University. 
+
 
 

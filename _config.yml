@@ -22,7 +22,7 @@ linkedin_username: # your LinkedIn user name
 scholar_userid: AHGGdYQAAAAJ
 orcid_id: 0000-0001-6124-1092 
 contact_note: >
-  Drop me an email.
+  Just drop me an email.
 
 google_analytics: UA-XXXXXXXXX # out your google-analytics code
 
@@ -63,7 +63,7 @@ collections:
     output: true
     permalink: /projects/:path/
 
-news_limit: 5
+news_limit: 10 
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
