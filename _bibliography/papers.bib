@@ -8,6 +8,26 @@
   booktitle={International Conference on Learning Representations},
   year={2019},
   url={https://openreview.net/forum?id=H1MgjoR9tQ},
+  abstract={Continuous Bag of Words (CBOW) is a powerful text embedding method.
+            Due to its strong capabilities to encode word content, CBOW
+            embeddings perform well on a wide range of downstream tasks while
+            being efficient to compute. However, CBOW is not capable of
+            capturing the word order. The reason is that the computation of
+            CBOW's word embeddings is commutative, i.e., embeddings of XYZ and
+            ZYX are the same. In order to address this shortcoming, we propose
+            a learning algorithm for the Continuous Matrix Space Model, which
+            we call Continual Multiplication of Words (CMOW). Our algorithm is
+            an adaptation of word2vec, so that it can be trained on large
+            quantities of unlabeled text. We empirically show that CMOW better
+            captures linguistic properties, but it is inferior to CBOW in
+            memorizing word content. Motivated by these findings, we propose a
+            hybrid model that combines the strengths of CBOW and CMOW. Our
+            results show that the hybrid CBOW-CMOW-model retains CBOW's strong
+            ability to memorize word content while at the same time
+            substantially improving its ability to encode other linguistic
+            information by 8\%. As a result, the hybrid also performs better on
+            8 out of 11 supervised downstream tasks with an average
+            improvement of 1.2\%.}
 }
 
 @inproceedings{10.1007/978-3-030-04257-8_30,
@@ -57,6 +77,23 @@
   publisher = {ACM},
   address = {New York, NY, USA},
   keywords = {adversarial autoencoders, automatic playlist continuation, multi-modal recommender, music recommender systems, neural networks},
+  abstract = {The task of automatic playlist continuation is generating a list
+              of recommended tracks that can be added to an existing playlist.
+              By suggesting appropriate tracks, i.\,e., songs to add to a
+              playlist, a recommender system can increase the user engagement
+              by making playlist creation easier, as well as extending
+              listening beyond the end of current playlist. The ACM Recommender
+              Systems Challenge 2018 focuses on such task. Spotify released a
+              dataset of playlists, which includes a large number of playlists
+              and associated track listings. Given a set of playlists from
+              which a number of tracks have been withheld, the goal is
+              predicting the missing tracks in those playlists. We participated
+              in the challenge as the team \emph{Unconscious Bias} and, in this
+              paper, we present our approach. We extend adversarial
+              autoencoders to the problem of automatic playlist continuation.
+              We show how multiple input modalities, such as the playlist
+              titles as well as track titles, artists and albums, can be
+              incorporated in the playlist continuation task.}
 } 
 
 @inproceedings{10.1007/978-3-319-99133-7_18,
@@ -99,6 +136,21 @@
   publisher = {ACM},
   address = {New York, NY, USA},
   keywords = {adversarial autoencoders, multi-modal, neural networks, recommender systems, sparsity},
+  abstract = {We present multi-modal adversarial autoencoders for
+              recommendation and evaluate them on two different tasks: citation
+              recommendation and subject label recommendation. We analyze the
+              effects of adversarial regularization, sparsity, and different
+              input modalities. By conducting 408 experiments, we show that
+              adversarial regularization consistently improves the performance
+              of autoencoders for recommendation. We demonstrate, however, that
+              the two tasks differ in the semantics of item co-occurrence in
+              the sense that item co-occurrence resembles relatedness in case
+              of citations, yet implies diversity in case of subject labels.
+              Our results reveal that supplying the partial item set as input
+              is only helpful, when item co-occurrence resembles relatedness.
+              When facing a new recommendation task it is therefore crucial to
+              consider the semantics of item co-occurrence for the choice of an
+              appropriate model.}
 }
 
 @inproceedings{Lauscher:2018:LOC:3197026.3197050,
@@ -117,6 +169,23 @@
   publisher = {ACM},
   address = {New York, NY, USA},
   keywords = {automatic reference extraction, citation data, editorial system, library workflows, linked open data},
+  abstract = {Citations play a crucial role in the scientific discourse, in
+              information retrieval, and in bibliometrics. Many initiatives are
+              currently promoting the idea of having free and open citation
+              data. Creation of citation data, however, is not part of the
+              cataloging workflow in libraries nowadays. In this paper, we
+              present our project Linked Open Citation Database, in which we
+              design distributed processes and a system infrastructure based on
+              linked data technology. The goal is to show that efficiently
+              cataloging citations in libraries using a semi-automatic approach
+              is possible. We specifically describe the current state of the
+              workflow and its implementation. We show that we could
+              significantly improve the automatic reference extraction that is
+              crucial for the subsequent data curation. We further give
+              insights on the curation and linking process and provide
+              evaluation results that not only direct the further development
+              of the project, but also allow us to discuss its overall
+              feasibility.}
 }
 
 @inproceedings{Mai:2018:UDL:3197026.3197039,
@@ -135,6 +204,32 @@
   publisher = {ACM},
   address = {New York, NY, USA},
   keywords = {deep learning, digital libraries, text classification},
+  abstract = {For (semi-)automated subject indexing systems in digital
+              libraries, it is often more practical to use metadata such as the
+              title of a publication instead of the full-text or the abstract.
+              Therefore, it is desirable to have good text mining and text
+              classification algorithms that operate well already on the title
+              of a publication. So far, the classification performance on
+              titles is not competitive with the performance on the full-texts
+              if the same number of training samples is used for training.
+              However, it is much easier to obtain title data in large
+              quantities and to use it for training than full-text data. In
+              this paper, we investigate the question how models obtained from
+              training on increasing amounts of title training data compare to
+              models from training on a constant number of full-texts. We
+              evaluate this question on a large-scale dataset from the medical
+              domain (PubMed) and from economics (EconBiz). In these datasets,
+              the titles and annotations of millions of publications are
+              available, and they outnumber the available full-texts by a
+              factor of 20 and 15, respectively. To exploit these large amounts
+              of data to their full potential, we develop three strong deep
+              learning classifiers and evaluate their performance on the two
+              datasets. The results are promising. On the EconBiz dataset, all
+              three classifiers outperform their full-text counterparts by a
+              large margin. The best title-based classifier outperforms the
+              best full-text method by 9.9\%. On the PubMed dataset, the best
+              title-based method almost reaches the performance of the best
+              full-text classifier, with a difference of only 2.9\%.}
 }
 
 @inproceedings{Galke:2017:UTV:3148011.3148039,
@@ -154,6 +249,15 @@
   publisher = {ACM},
   address = {New York, NY, USA},
   keywords = {Multi-label classification, document analysis, semantic annotation},
+  abstract = {We conduct the first systematic comparison of automated semantic
+              annotation based on either the full-text or only on the title
+              metadata of documents. Apart from the prominent text
+              classification baselines kNN and SVM, we also compare recent
+              techniques of Learning to Rank and neural networks and revisit
+              the traditional methods logistic regression, Rocchio, and Naive
+              Bayes. Across three of our four datasets, the performance of the
+              classifications using only titles reaches over 90\% of the quality
+              compared to the performance when using the full-text.}
 }
 
 @inproceedings{mci/Galke2017,
@@ -164,5 +268,26 @@
   editor = {Eibl, Maximilian AND Gaedke, Martin} ,
   pages = { 2155-2167 },
   publisher = {Gesellschaft für Informatik, Bonn},
-  address = {}
+  address = {},
+  abstract = {We assess the suitability of word embeddings for practical
+              information retrieval scenarios. Thus, we assume that users issue
+              ad-hoc short queries where we return the first twenty retrieved
+              documents after applying a boolean matching operation between the
+              query and the documents. We compare the performance of several
+              techniques that leverage word embeddings in the retrieval models
+              to compute the similarity between the query and the documents,
+              namely word centroid similarity, paragraph vectors, Word Mover’s
+              distance, as well as our novel inverse document frequency (IDF)
+              re-weighted word centroid similarity. We evaluate the performance
+              using the ranking metrics mean average precision, mean reciprocal
+              rank, and normalized discounted cumulative gain. Additionally, we
+              inspect the retrieval models’ sensitivity to document length by
+              using either only the title or the full-text of the documents for
+              the retrieval task. We conclude that word centroid similarity is
+              the best competitor to state-of-the-art retrieval models. It can
+              be further improved by re-weighting the word frequencies with IDF
+              before aggregating the respective word vectors of the embedding.
+              The proposed cosine similarity of IDF re-weighted word vectors is
+              competitive to the TF-IDF baseline and even outperforms it in
+              case of the news domain with a relative percentage of 15\%.}
 }
