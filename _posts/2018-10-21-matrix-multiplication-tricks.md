@@ -1,12 +1,32 @@
 ---
 layout: post
 author: Lukas Galke
-published: false
+published: true
 ---
 
 # From For-Loops to Matrix Multiplication
 
 ## Introduction 
+
+For loops, easy to write, but expensive to use in the context of vectors, matrices, and tensors.
+
+MatMul: $$\boldsymbol{A} \cdot \boldsymbol{B} = \boldsymbol{C}$$
+
+is defined as: $$c_{ij} = \sum_{k=1}^m a_{ik} \cdot b_{kj}$$
+
+
+$$ \cdot : (M,N) * (N, K) = (M,K) $$
+
+*Inner product:* $$v^T \cdot x$$
+
+*Outer product:* $$ v \cdot x.T $$
+
+The element of the resulting matrix $$c_{ij}$$ pairwise multiplied entries of the $$i$$th row of $$\boldsymbol{A}$$ and the $$j$$ column of $$\boldsymbol{B}$$.
+
+
+
+
+
 
 ## Related 
 
@@ -14,13 +34,6 @@ Blog post on geometric intuition of matrix multiplication.
 
 TODO: find cite
 
-## Revisiting the Basics
-
-$$ \cdot : (M,N) * (N, K) = (M,K) $$
-
-*Inner product:* $$v^T \cdot x$$
-
-*Outer product:* $$ v \cdot x.T $$
 
 ## Computing the co-occurrence matrix of items for recommendations
 
