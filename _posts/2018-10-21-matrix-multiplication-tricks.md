@@ -4,11 +4,7 @@ author: Lukas Galke
 published: false
 ---
 
-# Matrix Multiplication Tricks
-
-## TLDR:
-
-Matrix multiplication is a useful technique.
+# From For-Loops to Matrix Multiplication
 
 ## Introduction 
 
