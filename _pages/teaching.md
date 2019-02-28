@@ -14,10 +14,10 @@ description: Courses I taught as a teaching assistant at Kiel University
 
 - Information Systems (Databases)
 
-### Summer term 2016
+### Summer term 2015
 
 - Communication Systems
 
-### Summer term 2015
+### Summer term 2014
 
 - Communication Systems

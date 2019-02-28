@@ -55,7 +55,10 @@ $pink:              #f92080 !default;
 $light-pink:        #ffdddd !default;
 $yellow:            #efcc00 !default;
 
+// own colors
 $blue-six:          #0927c0 !default;
+$inoue-bg:          #ff9376 !default;
+$inoue-hair:        #f6652c !default;
 
 $white:             #fff !default;
 $dark-gray:         #333 !default;
@@ -72,7 +75,7 @@ $darken-2:          rgba(#000,.125) !default;
 $darken-3:          rgba(#000,.25) !default;
 $darken-4:          rgba(#000,.5) !default;
 
-$theme-color:       $orange;
+$theme-color:       $inoue-hair;
 $code-color:        $dark-gray;
 $text-color:        $mid-gray;
 $background-color:  white;
