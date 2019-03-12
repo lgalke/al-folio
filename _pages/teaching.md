@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Courses I taught as a teaching assistant at Kiel University
+description: Courses to which I contributed as a teaching assistant
 ---
 
 ### Winter term 2018/2019
@@ -14,10 +14,10 @@ description: Courses I taught as a teaching assistant at Kiel University
 
 - Information Systems (Databases)
 
-### Summer term 2015
+### Summer term 2014
 
 - Communication Systems
 
-### Summer term 2014
+### Summer term 2013
 
 - Communication Systems
