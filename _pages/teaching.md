@@ -2,8 +2,15 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Courses to which I contributed as a teaching assistant
 ---
+
+## co-supervised theses
+
+- Fabian Steputat, 2019.
+- Jonas Busse, 2018.
+- Florian Mai: *Semantic Subject Indexing: Comparison of Deep Learning Methods on Titles and Full-Texts*, 2018.
+
+## assisted in lectures
 
 ### Winter term 2018/2019
 
