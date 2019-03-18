@@ -75,7 +75,7 @@ highlighter: pygments
 
 # Includes & excludes
 include: ['_pages']
-exclude: [vendor]
+exclude: [vendor,bin]
 
 # Plug-ins
 plugins:
