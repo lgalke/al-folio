@@ -6,12 +6,11 @@ title: teaching
 
 ## co-supervised theses
 
-- Marcel Becker: *Building a platform to evaluate traffic flow optimization methods*, Bachelor's thesis, 2019.
-- Fabian Steputat, Master's thesis, 2019.
-- Jonas Busse, Master's thesis, 2018.
+- Fabian Steputat, *Dokumentenklassifikation mit Few-Shot-Learning*,  Master's thesis, 2019.
+- Jonas Busse, *Automatische Vorschlagbildung mittels Deep Learning in belegintensiven Geschäftsprozessen*, Master's thesis, Aug 2018.
 - Florian Mai: *Semantic Subject Indexing: Comparison of Deep Learning Methods on Titles and Full-Texts*, Master's thesis, 2018.
 
-## assisted lectures
+## assisted in lectures
 
 ### winter term 2018/2019
 
