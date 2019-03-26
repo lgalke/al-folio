@@ -15,10 +15,10 @@ news: true
 social: true
 ---
 
-I am a PhD student at [Kiel University](https://www.uni-kiel.de/en) since 2017. I work
-part-time at Kiel University and part-time at [ZBW -- Leibniz Information
-Centre for Economics](https://zbw.eu). Before, I received both my bachelor's
-(2013) and master's degree (2017) in computer science from Kiel
-University. My research interests comprise machine learning and natural
-language processing.
-
+I am a second-year PhD student advised by [Ansgar
+Scherp](http://ansgarscherp.net). I work part-time at [Kiel
+University](https://www.uni-kiel.de/en) and part-time at [ZBW -- Leibniz
+Information Centre for Economics](https://zbw.eu). In my spare time, I
+contribute to the [MTank](http://www.themtank.org/) to use AI to make AI research more accessible.
+My research interests reside in machine learning and natural language processing.
+In particular, neural networks, autoencoders, and self-supervised learning spark joy.

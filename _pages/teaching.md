@@ -12,19 +12,8 @@ title: teaching
 
 ## assisted in lectures
 
-### winter term 2018/2019
-
-- Information Systems (Databases)
-- Data Mining and Knowledge Discovery
-
-### winter term 2017/2018
-
-- Information Systems (Databases)
-
-### summer term 2014
-
-- Communication Systems
-
-### Summer term 2013
-
-- Communication Systems
+- Information Systems (Databases), winter term 18/19
+- Data Mining and Knowledge Discovery, winter term 18/19
+- Information Systems (Databases), winter term 17/18
+- Communication Systems, summer term 14
+- Communication Systems, summer term 13
