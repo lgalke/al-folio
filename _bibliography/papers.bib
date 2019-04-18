@@ -1,8 +1,29 @@
 ---
 ---
 
+@inproceedings{galke2019graph,
+  title= {Can Graph Neural Networks Go ``Online''? An Analysis of Pretraining and Inference}
+  author={Lukas Galke and Iacopo Vagliano and Ansgar Scherp},
+  booktitle={Representation Learning on Graphs and Manifolds, ICLR 2019 Workshop}
+  year={2019},
+  abstract={Large-scale graph data in real-world applications is often not static but dynamic, i.\,e., new nodes and edges appear over time.
+            Current graph convolution approaches are promising, especially, when all the graph's nodes and edges
+            are available during training.
+            When unseen nodes and edges are inserted after training, it is not yet
+            evaluated whether up-training or re-training from scratch is preferable.
+            We construct an experimental setup, in which we insert previously unseen
+            nodes and edges after training and conduct a limited amount of further (inference) epochs. 
+            In this setup, we compare adapting pretrained graph neural networks against retraining from
+            scratch.
+            Our results show that pretrained models yield high accuracy scores despite 
+            changes in the graph structure and that pretraining is preferable over retraining from scratch. 
+            Our experiments represent a first step to evaluate and develop
+            truly online variants of graph neural networks.}
+}
+
+
 @inproceedings{
-  mai2018cbow,
+  mai2019cbow,
   title={{CBOW} Is Not All You Need: Combining {CBOW} with the Compositional Matrix Space Model},
   author={Florian Mai and Lukas Galke and Ansgar Scherp},
   booktitle={International Conference on Learning Representations},
