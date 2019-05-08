@@ -2,7 +2,7 @@
 layout: about
 permalink: /
 title: <strong>Lukas</strong> Paul Achatius Galke
-description: machine learning / natural language processing
+description: machine learning / self-supervised learning / nlp / graph convolution
 
 profile:
   align: right
@@ -15,10 +15,12 @@ news: true
 social: true
 ---
 
-I am a second-year PhD student advised by [Ansgar
-Scherp](http://ansgarscherp.net). I work part-time at [Kiel
-University](https://www.uni-kiel.de/en) and part-time at [ZBW -- Leibniz
-Information Centre for Economics](https://zbw.eu). In my spare time, I
-contribute to the [MTank](http://www.themtank.org/) to use AI to make AI research more accessible.
-My research interests reside in machine learning and natural language processing.
-In particular, neural networks, autoencoders, and self-supervised learning spark joy.
+I am a PhD student advised by [Ansgar
+Scherp](http://ansgarscherp.net) and just started my third year. I work at [Kiel
+University](https://www.uni-kiel.de/en) and at [ZBW -- Leibniz Information
+Centre for Economics](https://zbw.eu). In my spare time, I contribute to the
+[MTank](http://www.themtank.org/).
+
+My research interests comprise self-supervised learning on semi-structured data.
+In particular, that covers learning representations in text-attributed graphs.
+I'm most passionate about autoencoders, graph convolution, and Shannon entropy.
