@@ -1,6 +1,6 @@
 layout: post
 author: Lukas Galke
-published: true
+published: false
 ---
 
 # Evaluating NVIDIA's Jetson Nano as a Personal Deep Learning Station
@@ -8,11 +8,9 @@ published: true
 
 ## Installing pytorch
 
-Unfortunately, installing [pytorch](https://pytorch.org) was not going smoothly
-out of the box.  The official pytorch builds do not include wheels for the
+The official [pytorch](https://pytorch.org) builds do not include wheels for the
 AArch64 architecture.  NVIDIA provides, however, precompiled binaries.  Follow
-this
-[guide](https://devtalk.nvidia.com/default/topic/1049071/jetson-nano/pytorch-for-jetson-nano/),
+this [guide](https://devtalk.nvidia.com/default/topic/1049071/jetson-nano/pytorch-for-jetson-nano/),
 installation of pytorch went smoothly.
 
 

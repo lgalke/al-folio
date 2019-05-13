@@ -8,7 +8,7 @@ published: true
 
 ## Introduction 
 
-For loops, easy to write, but expensive to use in the context of vectors, matrices, and tensors.
+For-loops are easy to write, but expensive to use in the context of vectors, matrices, and tensors.
 
 MatMul: $$\boldsymbol{A} \cdot \boldsymbol{B} = \boldsymbol{C}$$
 
@@ -22,7 +22,6 @@ $$ \cdot : (M,N) * (N, K) = (M,K) $$
 *Outer product:* $$ v \cdot x.T $$
 
 The element of the resulting matrix $$c_{ij}$$ pairwise multiplied entries of the $$i$$th row of $$\boldsymbol{A}$$ and the $$j$$ column of $$\boldsymbol{B}$$.
-
 
 
 
