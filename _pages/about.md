@@ -2,7 +2,7 @@
 layout: about
 permalink: /
 title: <strong>Lukas</strong> Paul Achatius Galke
-description: machine learning / self-supervised learning / nlp / graph convolution
+description: machine learning / self-supervised learning / nlp / graph neural nets
 
 profile:
   align: right

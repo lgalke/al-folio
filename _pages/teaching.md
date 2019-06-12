@@ -6,9 +6,10 @@ title: teaching
 
 ## co-supervised theses
 
-- Fabian Steputat, *Dokumentenklassifikation mit Few-Shot-Learning*,  Master's thesis, 2019.
-- Jonas Busse, *Automatische Vorschlagbildung mittels Deep Learning in belegintensiven Geschäftsprozessen*, Master's thesis, Aug 2018.
-- Florian Mai: *Semantic Subject Indexing: Comparison of Deep Learning Methods on Titles and Full-Texts*, Master's thesis, 2018.
+- M Becker: *Erstellung einer Plattform zur Evaluierung von Verkehrsflussoptimierungs-Methodiken*, Bachelor's thesis, 2019.
+- F Steputat: *Dokumentenklassifikation mit Few-Shot-Learning*,  Master's thesis, 2019.
+- J Busse: *Automatische Vorschlagbildung mittels Deep Learning in belegintensiven Geschäftsprozessen*, Master's thesis, 2018.
+- F Mai: *Semantic Subject Indexing: Comparison of Deep Learning Methods on Titles and Full-Texts*, Master's thesis, 2018.
 
 ## assisted in lectures
 

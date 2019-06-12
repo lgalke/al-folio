@@ -5,9 +5,12 @@
 @inproceedings{galke2019graph,
 	abstract = {Large-scale graph data in real-world applications is often not static but dynamic, i. e., new nodes and edges appear over time. Current graph convolution approaches are promising, especially, when all the graph{\rq}s nodes and edges are available during training. When unseen nodes and edges are inserted after training, it is not yet evaluated whether up-training or re-training from scratch is preferable. We construct an experimental setup, in which we insert previously unseen nodes and edges after training and conduct a limited amount of inference epochs. In this setup, we compare adapting pretrained graph neural networks against retraining from scratch. Our results show that pretrained models yield high accuracy scores on the unseen nodes and that pretraining is preferable over retraining from scratch. Our experiments represent a first step to evaluate and develop truly online variants of graph neural networks.},
 	author = {Galke, Lukas and Vagliano, Iacopo and Scherp, Ansgar},
-	booktitle = {Representation Learning on Graphs and Manifolds, {ICLR} 2019 Workshop},
+	booktitle = {Representation Learning on Graphs and Manifolds, {ICLR} Workshop},
 	title = {Can Graph Neural Networks Go ``Online''? An Analysis of Pretraining and Inference},
-	year = {2019}
+	year = {2019},
+        pdf={2019-RLGM-online-graph-neural-nets.pdf},
+        arxiv={1905.06018},
+        code={https://github.com/lgalke/gnn-pretraining-evaluation}
 }
 
 @inproceedings{mai2019cbow,
@@ -35,7 +38,10 @@
 	booktitle = {International Conference on Learning Representations},
 	title = {{CBOW} Is Not All You Need: Combining {CBOW} with the Compositional Matrix Space Model},
 	url = {https://openreview.net/forum?id=H1MgjoR9tQ},
-	year = {2019}
+	year = {2019},
+        pdf = {2019-ICLR-word2mat.pdf},
+        arxiv = {1902.06423},
+        code={https://github.com/florianmai/word2mat}
 }
 
 @inproceedings{10.1007/978-3-030-04257-8_30,
@@ -64,7 +70,8 @@
 	pages = {290--303},
 	publisher = {Springer International Publishing},
 	title = {Performance Comparison of Ad-Hoc Retrieval Models over Full-Text vs. Titles of Documents},
-	year = {2018}
+	year = {2018},
+        slides={2018-ICADL-fulltext-vs-title-IR.slides.pdf}
 }
 
 @inproceedings{Vagliano:2018:UAA:3267471.3267476,
@@ -89,7 +96,7 @@
 	address = {New York, NY, USA},
 	articleno = {5},
 	author = {Vagliano, Iacopo and Galke, Lukas and Mai, Florian and Scherp, Ansgar},
-	booktitle = {Proceedings of the ACM Recommender Systems Challenge 2018},
+	booktitle = {Proceedings of the ACM Recommender Systems Challenge},
 	doi = {10.1145/3267471.3267476},
 	isbn = {978-1-4503-6586-4},
 	keywords = {adversarial autoencoders, automatic playlist continuation, multi-modal recommender, music recommender systems, neural networks},
@@ -100,7 +107,9 @@
 	series = {RecSys Challenge '18},
 	title = {Using Adversarial Autoencoders for Multi-Modal Automatic Playlist Continuation},
 	url = {http://doi.acm.org/10.1145/3267471.3267476},
-	year = {2018}
+	year = {2018},
+        slides={2018-RecSysChallenge-aae-recommender.slides.pdf},
+        code={https://github.com/lgalke/aae-recommender}
 }
 
 @inproceedings{10.1007/978-3-319-99133-7_18,
@@ -123,7 +132,9 @@
 	pages = {218--229},
 	publisher = {Springer International Publishing},
 	title = {A Case Study of Closed-Domain Response Suggestion with Limited Training Data},
-	year = {2018}
+	year = {2018},
+        slides = {2018-TIR-response-suggestion.slides.pdf},
+        code={https://github.com/lgalke/resuggest}
 }
 
 @inproceedings{Galke:2018:MAA:3209219.3209236,
@@ -156,7 +167,9 @@
 	series = {UMAP '18},
 	title = {Multi-Modal Adversarial Autoencoders for Recommendations of Citations and Subject Labels},
 	url = {http://doi.acm.org/10.1145/3209219.3209236},
-	year = {2018}
+	year = {2018},
+        slides={2018-UMAP-aae-recommender.slides.pdf},
+        code={https://github.com/lgalke/aae-recommender}
 }
 
 @inproceedings{Lauscher:2018:LOC:3197026.3197050,
@@ -235,7 +248,9 @@
 	series = {JCDL '18},
 	title = {Using Deep Learning for Title-Based Semantic Subject Indexing to Reach Competitive Performance to Full-Text},
 	url = {http://doi.acm.org/10.1145/3197026.3197039},
-	year = {2018}
+	year = {2018},
+        slides={2018-JCDL-multi-label-classification.slides.pdf},
+        code={https://github.com/florianmai/Quadflor}
 }
 
 @inproceedings{Galke:2017:UTV:3148011.3148039,
@@ -263,7 +278,10 @@
 	series = {K-CAP 2017},
 	title = {Using Titles vs. Full-text As Source for Automated Semantic Document Annotation},
 	url = {http://doi.acm.org/10.1145/3148011.3148039},
-	year = {2017}
+	year = {2017},
+        slides={2017-KCAP-quadflor.slides.pdf},
+        code={https://github.com/quadflor/Quadflor},
+        arxiv={1705.05311}
 }
 
 @inproceedings{mci/Galke2017,
@@ -290,10 +308,54 @@
               case of the news domain with a relative percentage of 15\%.},
 	address = {},
 	author = {Galke, Lukas AND Saleh, Ahmed AND Scherp, Ansgar},
-	booktitle = {INFORMATIK 2017},
+	booktitle = {INFORMATIK},
 	pages = { 2155--2167 },
 	publisher = {Gesellschaft f{\"u}r Informatik, Bonn},
 	title = {Word Embeddings for Practical Information Retrieval},
-	year = {2017}
+	year = {2017},
+        pdf={2017-INFORMATIK-vec4ir.pdf},
+        slides={2017-INFORMATIK-vec4ir.slides.pdf},
+        code={https://github.com/lgalke/vec4ir}
+
+}
+
+@mastersthesis{lgalke-mastersthesis,
+  author       = {Lukas Galke}, 
+  title        = {Embedded Retrieval -- Word Embeddings for Practical Information Retrieval},
+  school       = {Kiel University, Germany},
+  year         = 2017,
+  month        = 3,
+  pdf          = {lgalke-mastersthesis.pdf},
+  code         = {https://github.com/lgalke/vec4ir},
+  abstract={
+            We assess the suitability of word embeddings for practical information
+            retrieval. While limiting ourselves to unsupervised models, we compare the
+            performance of several techniques that leverage word embeddings to retrieval
+            models (i.\ e.\@,  provide a query-document similarity): the intuitive word
+            centroid similarity, dedicated paragraph vectors, the physically inspired Word
+            Mover's distance, as well as a novel IDF re-weighted word centroid similarity.
+
+            In our comparison, we thrive to simulate a strictly practical setting: short
+            queries, a boolean matching operation, only the first twenty retrieved
+            documents are considered. We evaluate the performance using the ranking metrics
+            mean average precision, mean reciprocal rank and normalised discounted
+            cumulative gain. Additionally, we inspect the retrieval models' sensitivity to
+            document length by using either only the title or the full-text as documents.
+
+            We conclude that word centroid similarity is the best competitor to
+            state-of-the-art retrieval models and can be further improved by re-weighting
+            the word frequencies according to inverse document frequency before aggregating
+            the respective word vectors of the embedding. The proposed cosine similarity of
+            IDF re-weighted word vectors is competitive to the TF-IDF baseline and even
+            outperforms it in case of the news domain with a relative percentage of $15$\%.
+
+            In the context of this research contribution, a dedicated information retrieval
+            framework has been developed. The key features include the incorporation of
+            embedding-based retrieval models, the simulation of a practical setting,
+            automatic evaluation as well as convenient extendability by new retrieval
+            models. The corresponding user's guide and developer's guide are part of this
+            work.
+
+            }
 }
 

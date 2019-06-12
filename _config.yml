@@ -5,13 +5,13 @@ name: Lukas Galke
 title: Lukas Galke
 email: lga@informatik.uni-kiel.de
 description: > # this means to ignore newlines until "url:"
-  machine learning / self-supervised learning / nlp / graph convolution
+  machine learning / self-supervised learning / nlp / graph neural nets
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
 
 url: # the base hostname & protocol for your site
-baseurl:  # the subpath of your site, e.g. /blog/
-last_updated: 2019-03-26 # leave blank if you don't want to display last updated
+baseurl: # the subpath of your site, e.g. /blog/
+last_updated: 2019-05-15 # leave blank if you don't want to display last updated
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -30,7 +30,7 @@ google_analytics: UA-XXXXXXXXX # out your google-analytics code
 # Blog
 # -----------------------------------------------------------------------------
 blog_name: blog
-blog_description: stuff I want to share
+blog_description: random things will appear here
 
 # Pagination
 paginate: 4
@@ -63,7 +63,7 @@ collections:
     output: true
     permalink: /projects/:path/
 
-news_limit: 10 
+news_limit: 15 
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -107,6 +107,8 @@ scholar:
   details_link: Details
 
   query: "@*"
+  # added by me
+  repository: /assets/pdf/
 
 # -----------------------------------------------------------------------------
 # Other settings
