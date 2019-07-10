@@ -4,6 +4,14 @@ author: Lukas Galke
 published: false
 ---
 
+### Background: Pruning
+
+The key idea of pruning is to remove connections within a neural net without
+harming its accuracy.  The first pruning techniques date back to 1992.  The
+motivation for pruning is to reduce the model size and the energy consumption.
+To actually do pruning several techniques have been proposed (CITE CITE CITE).
+Magnitude pruning, for instance, prunes away those weights that have the lowest
+magnitude, and therefore, the lowest effect on the network output.
 
 
 ### The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks {% cite 2018arXiv180303635F --file references %}
