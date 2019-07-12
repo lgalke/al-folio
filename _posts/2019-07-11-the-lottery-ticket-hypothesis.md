@@ -6,6 +6,16 @@ published: true
 
 *-- Work in Progress --*
 
+Neural networks become larger and larger using up to billions of parameters.
+Studies show that drastic over-parametrization indeed leads to improved generalization performance.
+Researchers start to quantify the effort to train these large-scale models in
+\$\$\$ on cloud computing platforms and also in carbon emissions.
+
+After training, however, large parts of these large-scale models can be pruned away without harming the accuracy of the model[^imp].
+So far, the consensus was that it is still important to start with a large
+model[^smallify].
+Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation ** do achieve the same accuracy in the same training time as their large-scale counterparts.
+
 #### Outline
 
 * Background: Pruning
@@ -144,6 +154,11 @@ random tickets.
 * idea: dropout itself enforces sparsity tolerance during training. Target
   presumably unimportant units with dropout.
 
+
+## Outlook
+
+* The holy grail is how to identify winning tickets early in the
+  training process.
 
 
 ## References
