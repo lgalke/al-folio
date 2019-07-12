@@ -4,7 +4,9 @@ author: Lukas Galke
 published: true
 ---
 
-## Outline
+*-- Work in Progress --*
+
+#### Outline
 
 * Background: Pruning
 * The Lottery ticket hypothesis
@@ -13,14 +15,20 @@ published: true
 ### Background: Pruning
 
 The key idea of pruning is to remove connections within a neural net without
-harming its accuracy.  The first pruning techniques date back to 1992.  The
-motivation for pruning is to reduce the model size and the energy consumption.
-To actually do pruning several techniques have been proposed (CITE CITE CITE).
+harming its accuracy. Pruning techniques date back to 1992.  The
+motivation for pruning is to reduce the model size, and thus, space requirements and the energy consumption.
+There are several pruning techniques.
 Magnitude pruning, for instance, prunes away those weights that have the lowest
 magnitude, and therefore, the lowest effect on the network output[^imp].
 
 
 ### The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks[^lth]
+
+Over-parametrization plays a key role in deep learning. Despite the common
+fear that over-parametrized models tend to overfit, research shows that
+it, in fact, helps to generalize.
+
+Before the lottery ticket hypothesis, the commo
 
 > **The Lottery Ticket Hypothesis.** A randomly-initialized, dense neural
 > network contains a subnetwork that is initialized such that—when trained in
@@ -28,12 +36,19 @@ magnitude, and therefore, the lowest effect on the network output[^imp].
 > training for at most the same number of iterations.
 
 
-* Before: the common experience was that pruned architectures are harder to train from scratch
-* With iterative pruning, smaller winning tickets can be identifier than with
-  one-shot pruning. But it is more expensive as it requires retraining.
-* uses learning rate warmup for deeper models
-* uses layer-wise pruning for LeNet, Conv-2/4/6, but global pruning for Resnet-18 and VGG-19
-* Interaction with dropout: dropout may prime a network to be pruned and could make winning tickets easier to find
+Before the lottery ticket hypothesis (LTH) the common experience was that pruned architectures were harder to train from scratch.
+The LTH, however, states that subsets of weights can be trained to match or even outperform the accuracy of the unpruned network, when the initializiation is retained. These subsets are called *winning tickets*. They author's compare the trained accuracy of winning tickets against randomly initialized weights with the same structure (*random tickets*) as a winning ticket. 
+The authors have shown that winning tickets exists for LeNet and Conv-2/4/6, Resnet-18 and VGG-19. 
+
+#### Procedure to identify winning tickets
+
+until desired sparsity is reached:
+1. train a full model
+2. prune away a certain fraction of parameters
+3. use mask of retrained parameters and retrain with there original
+   initialization
+4. repeat from step 2 (iterative pruning)
+
 * compare against random tickets, retain mask but init randomly
 * winning tickets generalize better than random tickets
 * winning tickets' initialization is important
@@ -42,6 +57,44 @@ magnitude, and therefore, the lowest effect on the network output[^imp].
   well-initialized subnetwork; overparameterized networks are easier to train
   because they have more combinations of subnetworks that are potential winning tickets.
 * Using pruning techniques remains future work
+
+#### iterative vs one-shot pruning
+
+* With iterative pruning, smaller winning tickets can be identified than with
+  one-shot pruning. But it is more expensive as it requires retraining.
+
+#### global vs local pruning
+
+During pruning, one can either prune to the desired fraction of weights at each
+layer, or put the weights of all layers into one pool and prune globally.
+In the original LTH paper[^lth], the authors use local pruning for LeNet and 
+Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
+VGG-19. The idea is that within deeper models, some layers' weights might be
+more important to retain than others'[^trf2].
+
+#### late resetting and learning rate warmup
+
+  Learning rate warmup can help to find winning tickets for deeper models[^lth].
+  In follow-up work, the authors have introduced a different technique to deal with deeper models: late resetting[^lth-at-scale].
+  With late resetting, winning tickets start with weights very early in the training process (one and five epochs) of the original model.
+  When late resetting is used, learning rate warm-up is not necessary anymore.
+
+
+#### Both initialization and structure matter
+
+LTH[^lth] compares winning tickets against random tickets.
+These random tickets share the same structure but are re-initialized at random.
+It can be argued, that the success of winning tickets does not only come from
+the initialization but also from the structure itself.
+
+
+
+#### Interaction with dropout
+
+Dropout may prime a network to be pruned and could make winning tickets easier to find.
+Gomez and Hinton[^tgt-drop] introduce an adaption of dropout that assigns higher drop
+probabilities to low-magnitude weights to foster later pruning.
+
 
 ### Stabilizing the Lottery Ticket Hypothesis[^lth-at-scale]
 
