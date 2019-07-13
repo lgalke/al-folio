@@ -113,6 +113,13 @@ probabilities to low-magnitude weights to foster later pruning.
 * Learning rate warm-up is not necessary with late resetting
 
 
+### Deconstructing lottery tickets: Zeros, signs, and the supermask[^deconstruct]
+
+* hypothesize that subnetworks work well when weights are close to their final
+  values
+* the only crucial element is the sign of the initialization
+* sometimes, specific supermasks even work without further training
+
 ## Are winning tickets transferable across datasets?
 
 ### Sparse Transfer Learning via Winning Lottery Tickets[^trf1]
@@ -166,6 +173,7 @@ random tickets.
 [^imp]: Han, Song, et al. ["Learning both weights and connections for efficient neural network."](https://papers.nips.cc/paper/5784-learning-both-weights-and-connections-for-efficient-neural-network.pdf) NeurIPS 2015.
 [^lth]: Frankle, Jonathan, and Michael Carbin. ["The lottery ticket hypothesis: Finding sparse, trainable neural networks."](https://arxiv.org/abs/1803.03635) ICLR 2019.
 [^lth-at-scale]: Frankle, Jonathan, et al. ["The Lottery Ticket Hypothesis at Scale."](https://arxiv.org/abs/1903.01611) arXiv preprint arXiv:1903.01611 (2019).
+[^deconstruct]: Zhou, Hattie, et al. ["Deconstructing lottery tickets: Zeros, signs, and the supermask."](https://arxiv.org/abs/1905.01067) arXiv preprint arXiv:1905.01067 (2019).
 [^trf1]: Mehta, Rahul. ["Sparse Transfer Learning via Winning Lottery Tickets."](https://arxiv.org/abs/1905.07785) arXiv preprint arXiv:1905.07785 (2019).
 [^trf2]: Morcos, Ari S., et al. ["One ticket to win them all: generalizing lottery ticket initializations across datasets and optimizers."](https://arxiv.org/abs/1906.02773) arXiv preprint arXiv:1906.02773 (2019).
 [^lth-nlp]: Yu, Haonan, et al. ["Playing the lottery with rewards and multiple languages: lottery tickets in RL and NLP."](https://arxiv.org/abs/1906.02768) arXiv preprint arXiv:1906.02768 (2019).
