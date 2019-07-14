@@ -11,31 +11,27 @@ Studies show that drastic over-parametrization indeed leads to improved generali
 Researchers start to quantify the effort to train these large-scale models in
 \$\$\$ on cloud computing platforms and also in carbon emissions.
 
-After training, however, large parts of these large-scale models can be pruned away without harming the accuracy of the model[^imp].
+After training, however, large parts of large-scale models can be pruned away without harming the accuracy of the model[^imp].
+Pruning techniques date back to 1992.  The
+motivation for pruning is to reduce the model size, and thus, space requirements and the energy consumption.
+There are several pruning techniques.
+Magnitude pruning, for instance, prunes away those weights that have the lowest
+magnitude, and therefore, the lowest effect on the network output[^imp].
+
 The common experience until now was that the pruned networks cannot be trained from scratch.
 Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation -- do achieve the same accuracy in the same training time as their large-scale counterparts.
 Why is this important?
 The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
 This could save us wallets of \$\$\$ and tons of carbon emissions.
 
+
 #### Outline
 
-* Background: Pruning
-* The initialization lottery, winning tickets, and how to find them
-* Do winning tickets transfer?
+* The Lottery Ticket Hypothesis
+* How to find winning tickets
 * [TL;DR](#tldr)
 
-### Background: Pruning
-
-The key idea of pruning is to remove connections within a neural net without
-harming its accuracy. Pruning techniques date back to 1992.  The
-motivation for pruning is to reduce the model size, and thus, space requirements and the energy consumption.
-There are several pruning techniques.
-Magnitude pruning, for instance, prunes away those weights that have the lowest
-magnitude, and therefore, the lowest effect on the network output[^imp].
-
-
-### The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks[^lth]
+## the lottery ticket hypothesis[^lth]
 
 Over-parametrization plays a key role in deep learning. Despite the common
 fear that over-parametrized models tend to overfit, research shows that
@@ -70,17 +66,18 @@ until desired sparsity is reached:
 * Using pruning techniques remains future work
 
 
+**TODO** criticism of the LTH
 
-### how to find winning tickets?
+## how to find winning tickets?
 
 Several tricks are necessary to find winning tickets via pruning.
 
-#### iterative vs one-shot pruning
+### iterative vs one-shot pruning
 
 * With iterative pruning, smaller winning tickets can be identified than with
   one-shot pruning. But it is more expensive as it requires retraining.
 
-#### global vs local pruning
+### global vs local pruning
 
 During pruning, one can either prune to the desired fraction of weights at each
 layer, or put the weights of all layers into one pool and prune globally.
@@ -89,7 +86,7 @@ Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
 VGG-19. The idea is that within deeper models, some layers' weights might be
 more important to keep than others'[^trf2].
 
-#### late resetting and learning rate warmup
+### late resetting and learning rate warmup
 
   Learning rate warmup can help to find winning tickets for deeper models[^lth].
   In follow-up work, the authors have introduced a different technique to deal with deeper models: late resetting[^lth-at-scale].
@@ -97,7 +94,7 @@ more important to keep than others'[^trf2].
   When late resetting is used, learning rate warm-up is not necessary anymore.
 
 
-#### Winning tickets' initialization and structure matter
+### winning tickets' initialization and structure matter
 
 LTH[^lth] compares winning tickets against random tickets.
 These random tickets share the same structure but are re-initialized at random.
@@ -113,6 +110,7 @@ comparing against random tickets whose mask is also drawn at random.
   values
 * the only crucial element is the sign of the initialization
 * sometimes, specific supermasks even work without further training
+
 
 ### Sparse Transfer Learning via Winning Lottery Tickets[^trf1]
 
@@ -153,7 +151,7 @@ In their paper[^tgt-drop], the authors analyze not only the standard unit-dropou
 
 An L1 penalty on the weights of a neural network encourages sparse weights.
 Counterintuitively, it was shown that an L2 penalty leads to neural nets that
-are more amenable to pruning than nets with an L1 penalty.
+are more amenable to pruning than nets trained with an L1 penalty.
 
 #### Identifying winning tickets early
 
@@ -176,7 +174,7 @@ Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
 [^imp]: Han, Song, et al. ["Learning both weights and connections for efficient neural network."](https://papers.nips.cc/paper/5784-learning-both-weights-and-connections-for-efficient-neural-network.pdf) NeurIPS 2015.
 [^lth]: Frankle, Jonathan, and Michael Carbin. ["The lottery ticket hypothesis: Finding sparse, trainable neural networks."](https://arxiv.org/abs/1803.03635) ICLR 2019.
 [^lth-at-scale]: Frankle, Jonathan, et al. ["The Lottery Ticket Hypothesis at Scale."](https://arxiv.org/abs/1903.01611) arXiv preprint arXiv:1903.01611 (2019).
-[^deconstruct]: Zhou, Hattie, et al. ["Deconstructing lottery tickets: Zeros, signs, and the supermask."](https://arxiv.org/abs/1905.01067) arXiv preprint arXiv:1905.01067 (2019).
+[^deconstruct]: Zhou, Hattie, Janice Lan, Rosanne Liu, and Jason Yosinski. ["Deconstructing lottery tickets: Zeros, signs, and the supermask."](https://arxiv.org/abs/1905.01067) arXiv preprint arXiv:1905.01067 (2019).
 [^trf1]: Mehta, Rahul. ["Sparse Transfer Learning via Winning Lottery Tickets."](https://arxiv.org/abs/1905.07785) arXiv preprint arXiv:1905.07785 (2019).
 [^trf2]: Morcos, Ari S., et al. ["One ticket to win them all: generalizing lottery ticket initializations across datasets and optimizers."](https://arxiv.org/abs/1906.02773) arXiv preprint arXiv:1906.02773 (2019).
 [^lth-nlp]: Yu, Haonan, et al. ["Playing the lottery with rewards and multiple languages: lottery tickets in RL and NLP."](https://arxiv.org/abs/1906.02768) arXiv preprint arXiv:1906.02768 (2019).
