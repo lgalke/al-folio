@@ -169,9 +169,7 @@ Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
 * Highly over-parametrized nets generalize better, which might be explained by exponentially more possible sub-networks to form winning tickets. 
 * The LTH merely claims that such sub-networks exist. To benefit from this
   knowledge, one needs to find the winning tickets already during training.
-
-
-
+* What can we learn from the LTH about initialization?
 
 ## References
 
