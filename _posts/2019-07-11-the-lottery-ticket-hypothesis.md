@@ -12,15 +12,18 @@ Researchers start to quantify the effort to train these large-scale models in
 \$\$\$ on cloud computing platforms and also in carbon emissions.
 
 After training, however, large parts of these large-scale models can be pruned away without harming the accuracy of the model[^imp].
-So far, the consensus was that it is still important to start with a large
-model[^smallify].
-Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation ** do achieve the same accuracy in the same training time as their large-scale counterparts.
+The common experience until now was that the pruned networks cannot be trained from scratch.
+Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation -- do achieve the same accuracy in the same training time as their large-scale counterparts.
+Why is this important?
+The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
+This could save us wallets of \$\$\$ and tons of carbon emissions.
 
 #### Outline
 
 * Background: Pruning
-* The Lottery ticket hypothesis
-* Transfer Learning with winning tickets
+* The initialization lottery, winning tickets, and how to find them
+* Do winning tickets transfer?
+* [TL;DR](#tldr)
 
 ### Background: Pruning
 
@@ -38,8 +41,6 @@ Over-parametrization plays a key role in deep learning. Despite the common
 fear that over-parametrized models tend to overfit, research shows that
 it, in fact, helps to generalize.
 
-Before the lottery ticket hypothesis, the commo
-
 > **The Lottery Ticket Hypothesis.** A randomly-initialized, dense neural
 > network contains a subnetwork that is initialized such that—when trained in
 > isolation—it can match the test accuracy of the original network after
@@ -55,7 +56,7 @@ The authors have shown that winning tickets exists for LeNet and Conv-2/4/6, Res
 until desired sparsity is reached:
 1. train a full model
 2. prune away a certain fraction of parameters
-3. use mask of retrained parameters and retrain with there original
+3. use masked weights and retrain with their original
    initialization
 4. repeat from step 2 (iterative pruning)
 
@@ -67,6 +68,12 @@ until desired sparsity is reached:
   well-initialized subnetwork; overparameterized networks are easier to train
   because they have more combinations of subnetworks that are potential winning tickets.
 * Using pruning techniques remains future work
+
+
+
+### how to find winning tickets?
+
+Several tricks are necessary to find winning tickets via pruning.
 
 #### iterative vs one-shot pruning
 
@@ -80,7 +87,7 @@ layer, or put the weights of all layers into one pool and prune globally.
 In the original LTH paper[^lth], the authors use local pruning for LeNet and 
 Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
 VGG-19. The idea is that within deeper models, some layers' weights might be
-more important to retain than others'[^trf2].
+more important to keep than others'[^trf2].
 
 #### late resetting and learning rate warmup
 
@@ -90,28 +97,15 @@ more important to retain than others'[^trf2].
   When late resetting is used, learning rate warm-up is not necessary anymore.
 
 
-#### Both initialization and structure matter
+#### Winning tickets' initialization and structure matter
 
 LTH[^lth] compares winning tickets against random tickets.
 These random tickets share the same structure but are re-initialized at random.
-It can be argued, that the success of winning tickets does not only come from
-the initialization but also from the structure itself.
-
-
-
-#### Interaction with dropout
-
-Dropout may prime a network to be pruned and could make winning tickets easier to find.
-Gomez and Hinton[^tgt-drop] introduce an adaption of dropout that assigns higher drop
-probabilities to low-magnitude weights to foster later pruning.
-
-
-### Stabilizing the Lottery Ticket Hypothesis[^lth-at-scale]
-
-* Iterative magnitude pruning at initialization is problematic for deeper networks.
-* Late resetting: The authors propose to not prune at initialization but after few training epochs.
-* Learning rate warm-up is not necessary with late resetting
-
+The success of winning tickets does not only come from
+the initialization but also from the structure itself[^trf2].
+The empirical results from the original LTH paper compares against randomly
+initialized tickets with the same structure. This is more challenging than
+comparing against random tickets whose mask is also drawn at random.
 
 ### Deconstructing lottery tickets: Zeros, signs, and the supermask[^deconstruct]
 
@@ -119,8 +113,6 @@ probabilities to low-magnitude weights to foster later pruning.
   values
 * the only crucial element is the sign of the initialization
 * sometimes, specific supermasks even work without further training
-
-## Are winning tickets transferable across datasets?
 
 ### Sparse Transfer Learning via Winning Lottery Tickets[^trf1]
 
@@ -141,31 +133,44 @@ probabilities to low-magnitude weights to foster later pruning.
 
 
 
-## Are there winning tickets in other domains?
-
 ### Playing the lottery with rewards and multiple languages: lottery tickets in RL and NLP[^lth-nlp]
 
 Is the lottery ticket phenomenon an artefact of supervised image
-classification with feed-forward conv nets or does it generalize to other
+classification with feed-forward convolutional nets nets or does it generalize to other
 domains? The results show that, both in RL and NLP, winning tickets outperform
 random tickets.
 
 
-## More pruning techniques
+#### Pruning and dropout
 
-### Learning Sparse Networks Using Targeted Dropout[^tgt-drop]
+Dropout is a well-known regularization method that encourages sparsity tolerance during training by setting a random fraction of weights or hidden units to zero.
+However, when pruning is applied after training, the fraction of pruned weights depend on a heuristic such as the magnitude of the weights.
+Gomez et al [^tgt-drop] pursue the idea of improving the interaction of dropout and pruning.
+The idea is that dropout could be targeted to units, which are likely to be pruned, i.e., those with low magnitude.
+In their paper[^tgt-drop], the authors analyze not only the standard unit-dropout but also weight-dropout (aka DropConnect), which is even closer to the employed pruning techniques.
 
-* standard training does not necessarily enfcourage nets to be amenable to
-  pruning
-* introduces targeted dropout
-* idea: dropout itself enforces sparsity tolerance during training. Target
-  presumably unimportant units with dropout.
+#### L1 and L2 Norm
+
+An L1 penalty on the weights of a neural network encourages sparse weights.
+Counterintuitively, it was shown that an L2 penalty leads to neural nets that
+are more amenable to pruning than nets with an L1 penalty.
+
+#### Identifying winning tickets early
+
+To benefit from winning tickets at training time, it is not enough to know that a winning ticket exists.
+The holy grail is how to identify winning tickets early in the training process.
+Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
 
 
-## Outlook
+## tl;dr
 
-* The holy grail is how to identify winning tickets early in the
-  training process.
+* Under the lottery ticket hypothesis, neural nets contain sub-networks, whose initialization and
+  structure yields to better results than the original network.
+* Highly over-parametrized nets generalize better, which might be explained by exponentially more possible sub-networks to form winning tickets. 
+* The LTH merely claims that such sub-networks exist. To benefit from this
+  knowledge, one needs to find the winning tickets already during training.
+
+
 
 
 ## References
@@ -178,4 +183,7 @@ random tickets.
 [^trf2]: Morcos, Ari S., et al. ["One ticket to win them all: generalizing lottery ticket initializations across datasets and optimizers."](https://arxiv.org/abs/1906.02773) arXiv preprint arXiv:1906.02773 (2019).
 [^lth-nlp]: Yu, Haonan, et al. ["Playing the lottery with rewards and multiple languages: lottery tickets in RL and NLP."](https://arxiv.org/abs/1906.02768) arXiv preprint arXiv:1906.02768 (2019).
 [^tgt-drop]: Gomez, Aidan N., et al. ["Learning Sparse Networks Using Targeted Dropout."](https://arxiv.org/abs/1905.13678) arXiv preprint arXiv:1905.13678 (2019).
-[^smallify]: Leclerc, Guillaume, et al. ["Smallify: Learning network size while training."](https://arxiv.org/abs/1806.03723) arXiv preprint arXiv:1806.03723 (2018). 
+[^smallify]: Leclerc, Guillaume, et al. ["Smallify: Learning network size while training."](https://arxiv.org/abs/1806.03723) arXiv preprint arXiv:1806.03722 (2018). 
+[^fromscratch]: T Dettmers, L Zettlemoyer. ["Sparse Networks from Scratch: Faster Training without Losing Performance"](https://arxiv.org/abs/1907.04840) arXiv preprint arXiv:1907.04840.
+
+++ Morphnet?
