@@ -20,8 +20,9 @@ The motivation for pruning is to reduce the model size, and thus, space requirem
 One pruning technique is *magnitude pruning*, which prunes those weights that have the lowest magnitude, and therefore, the lowest effect on the network output[^imp].
 
 Until now, the common thinking was that training pruned networks from scratch is not as good as training a dense, large model, and pruning it afterwards.
-Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation -- do achieve the same accuracy in the same training time as their large-scale counterparts.
-Why is this important?  The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
+Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states that there exists a sparse sub-network that -- when trained in isolation -- does achieve the same accuracy in the same training time as their large-scale, dense counterparts.
+Why is this important?
+The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
 This could save us wallets of \$\$\$ and tons of carbon emissions. 
 
 
@@ -46,6 +47,14 @@ it, in fact, helps to generalize.
 Before the lottery ticket hypothesis (LTH) the common experience was that pruned architectures were harder to train from scratch.
 The LTH, however, states that subsets of weights can be trained to match or even outperform the accuracy of the unpruned network, when the initializiation is retained. These subsets are called *winning tickets*. They author's compare the trained accuracy of winning tickets against randomly initialized weights with the same structure (*random tickets*) as a winning ticket. 
 The authors have shown that winning tickets exists for LeNet and Conv-2/4/6, Resnet-18 and VGG-19. 
+
+
+#### an intuition
+ 
+To get an intution on the LTH, let's consider the simple task of computing the sum of two inputs $$y = x_0 + x_1 $$. We want to approximate the ground truth $$y$$ with a two-layer, linear neural net.
+
+$$ f(x) = ( (x_1, x_2) \cdot W^{(0)} + b^{(0)}  ) \cdot W^{(1)} + b^{(1)} \approx y $$
+
 
 #### Procedure to identify winning tickets
 
