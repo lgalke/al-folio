@@ -49,13 +49,29 @@ The LTH, however, states that subsets of weights can be trained to match or even
 The authors have shown that winning tickets exists for LeNet and Conv-2/4/6, Resnet-18 and VGG-19. 
 
 
-#### an intuition
+#### a minimal example: sum of two inputs
  
-To get an intution on the LTH, let's consider the simple task of computing the sum of two inputs $$y = x_0 + x_1 $$. We want to approximate the ground truth $$y$$ with a two-layer, linear neural net.
+To get an intution on the LTH, let's consider the simple task of computing the sum of two inputs $$y = x_0 + x_1 $$.
+We want to approximate the ground truth $$y$$ with a two-layer, linear neural net with $$n$$ hidden units and no bias.
 
-$$f(x) = ( (x_1, x_2) \cdot W^{(0)} + b^{(0)}  ) \cdot W^{(1)} + b^{(1)} \approx y$$
+<!-- $$\hat{y} = f(x) = \boldsymbol{W}^{(2)} \left( \boldsymbol{W}^{(1)} \boldsymbol{x} + \boldsymbol{b}^{(1)} \right) + \boldsymbol{b}^{(2)}$$ !-->
 
-For humans, a winning ticket for this scenario is easy to derive.
+$$f(x) = \sum_i^n w^{(2)}_i (w^{(1)}_{i,1} x_1 + w^{(1)}_{i,2} x_2)$$
+
+<center>
+<img src="/assets/img/LTH.png" alt="exemplary neural net with a winning ticket" width="80%"/>
+</center>
+
+
+For humans, a winning ticket for the sum of two inputs is easy to determine.
+Such a winning ticket would be $$w^{(1)}_{i,1} = w^{(1)}_{i,2} = w^{(2)}_{i} = 1$$ for some $$i$$ with all remaining weights being zero.
+This winning ticket would even generalize out of the training data domain, as it
+actually does compute the real sum of its two inputs.
+
+No matter how large we chose the hidden layer size $$n$$, our winning ticket will always consist of three nonzero weights.
+Thus, we can prune $$\frac{n-3}{n}$$ of the weights without harming accuracy.
+When we start training with a mask consisting of only those three nonzero-parameters, the network eventually learns the correct weights.
+
 
 
 
