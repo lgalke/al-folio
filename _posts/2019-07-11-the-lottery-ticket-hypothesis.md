@@ -53,7 +53,11 @@ The authors have shown that winning tickets exists for LeNet and Conv-2/4/6, Res
  
 To get an intution on the LTH, let's consider the simple task of computing the sum of two inputs $$y = x_0 + x_1 $$. We want to approximate the ground truth $$y$$ with a two-layer, linear neural net.
 
-$$ f(x) = ( (x_1, x_2) \cdot W^{(0)} + b^{(0)}  ) \cdot W^{(1)} + b^{(1)} \approx y $$
+$$f(x) = ( (x_1, x_2) \cdot W^{(0)} + b^{(0)}  ) \cdot W^{(1)} + b^{(1)} \approx y$$
+
+For humans, a winning ticket for this scenario is easy to derive.
+
+
 
 
 #### Procedure to identify winning tickets
