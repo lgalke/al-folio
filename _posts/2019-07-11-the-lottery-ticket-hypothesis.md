@@ -6,23 +6,23 @@ published: true
 
 *-- Work in Progress --*
 
-Neural networks become larger and larger using up to billions of parameters.
-Studies show that drastic over-parametrization indeed leads to improved generalization performance.
+<!-- overparametrization helps generalization !-->
+The common rationale when training neural networks is that larger networks have
+more capacity but are more prone to overfitting the training data.
+Recent studies have shown that over-parametrization can, in fact, act as a regularizer and lead to improved generalization performance[^arora2018].
+At the same time, neural networks become larger and larger using up to billions of parameters.
 Researchers start to quantify the effort to train these large-scale models in
-\$\$\$ on cloud computing platforms and also in carbon emissions.
+\$\$\$ on cloud computing platforms and in tons of carbon emissions.
 
-After training, however, large parts of large-scale models can be pruned away without harming the accuracy of the model[^imp].
-Pruning techniques date back to 1992.  The
-motivation for pruning is to reduce the model size, and thus, space requirements and the energy consumption.
-There are several pruning techniques.
-Magnitude pruning, for instance, prunes away those weights that have the lowest
-magnitude, and therefore, the lowest effect on the network output[^imp].
+After training, however, large parts of large-scale models can be pruned away without harming the accuracy of the model.
+Pruning techniques date back to 1992 (CITE LECUN).
+The motivation for pruning is to reduce the model size, and thus, space requirements and the energy consumption.
+One pruning technique is *magnitude pruning*, which prunes those weights that have the lowest magnitude, and therefore, the lowest effect on the network output[^imp].
 
-The common experience until now was that the pruned networks cannot be trained from scratch.
+Until now, the common thinking was that training pruned networks from scratch is not as good as training a dense, large model, and pruning it afterwards.
 Now, the lottery ticket hypothesis[^lth] (LTH) comes in, which states small sub-networks exist that -- when trained in isolation -- do achieve the same accuracy in the same training time as their large-scale counterparts.
-Why is this important?
-The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
-This could save us wallets of \$\$\$ and tons of carbon emissions.
+Why is this important?  The LTH suggests that it is not necessary to train a full-model, if only we could identify winning tickets early during training.
+This could save us wallets of \$\$\$ and tons of carbon emissions. 
 
 
 #### Outline
@@ -150,7 +150,7 @@ In their paper[^tgt-drop], the authors analyze not only the standard unit-dropou
 #### L1 and L2 Norm
 
 An L1 penalty on the weights of a neural network encourages sparse weights.
-Counterintuitively, it was shown that an L2 penalty leads to neural nets that
+Counterintuitively, an L2 penalty leads to neural nets that
 are more amenable to pruning than nets trained with an L1 penalty.
 
 #### Identifying winning tickets early
@@ -181,5 +181,6 @@ Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
 [^tgt-drop]: Gomez, Aidan N., et al. ["Learning Sparse Networks Using Targeted Dropout."](https://arxiv.org/abs/1905.13678) arXiv preprint arXiv:1905.13678 (2019).
 [^smallify]: Leclerc, Guillaume, et al. ["Smallify: Learning network size while training."](https://arxiv.org/abs/1806.03723) arXiv preprint arXiv:1806.03722 (2018). 
 [^fromscratch]: T Dettmers, L Zettlemoyer. ["Sparse Networks from Scratch: Faster Training without Losing Performance"](https://arxiv.org/abs/1907.04840) arXiv preprint arXiv:1907.04840.
+[^arora2018]: Arora, Sanjeev, Nadav Cohen, and Elad Hazan. ["On the optimization of deep networks: Implicit acceleration by overparameterization."](https://arxiv.org/abs/1802.06509) ICML 2018.
 
 ++ Morphnet?
