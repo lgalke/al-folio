@@ -76,12 +76,11 @@ until desired sparsity is reached:
 * Using pruning techniques remains future work
 
 
-
-
 #### iterative vs one-shot pruning
 
 With iterative pruning, smaller winning tickets can be identified than with one-shot pruning.
-But it is more expensive because it requires iterative re-training.
+This is in-line with the results of the paper on iterative magnitude pruning[^imp].
+But it is more expensive because it requires iterative training.
 
 #### global vs local pruning
 
@@ -90,9 +89,9 @@ layer, or put the weights of all layers into one pool and prune globally.
 In the original LTH paper[^lth], the authors use local pruning for LeNet and 
 Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
 VGG-19. The idea is that within deeper models, some layers' weights might be
-more important to keep than others'[^trf2].
+more important to keep[^trf2].
 
-#### late resetting and learning rate warmup
+#### late resetting vs learning rate warm-up
 
   Learning rate warmup can help to find winning tickets for deeper models[^lth].
   In follow-up work, the authors have introduced a different technique to deal with deeper models: late resetting[^lth-at-scale].
@@ -109,28 +108,25 @@ The empirical results from the original LTH paper compares against randomly
 initialized tickets with the same structure. This is more challenging than
 comparing against random tickets whose mask is also drawn at random.
 
+#### there are winning tickets outside of the image domain
 
-
+Is the lottery ticket phenomenon an artefact of supervised image
+classification with feed-forward convolutional nets nets or does it generalize to other
+domains? Yu et al. could show that winning tickets also exist in RL and NLP
+architectures[^lth-nlp].
 
 #### winning tickets are transferable across tasks
 
-Several works have analyzed whether winning tickets are transferable across
-tasks[^trf1][^trf2].
-
- similar to the paper described below
-
-
-#### One ticket to win them all: generalizing lottery ticket initializations across datasets and optimizers[^trf2]
-
-* Analyze transfer within the image domain, on different image classification
-  tasks (MNIST, CIFAR-10[0], ImageNet, Places365)
-* Uses global pruning in favor of layer-wise pruning
-* Use random structure for random tickets (different to original LTH), gain of
-  winning tickets comes from init and structure
-* Winning tickets transfer across datasets and optimmizers
-* Winning tickets hold inductive biases which improve training of sparsified
-  models
-* Larger datasets lead to better transferable winning tickets
+Several works have analyzed whether winning tickets are transferable across tasks within the image domain[^trf1][^trf2].
+Both works suggest that winning tickets are transferable across tasks.
+However, each makes use of a particular relaxation compared to the original LTH.
+Mehta[^trf1] relaxes late resetting to using the best weights anywhere in the training process on the source task.
+Morcos et al.[^trf2] compare against random
+tickets that are not only randomly initialized but also have a random structure,
+which is less challenging.
+The authors argue that the inductive biases of winning tickets consists of both the
+initialization and the structure. They further observe that larger
+datasets lead to better transferable winning tickets.
 
 #### How good are random tickets with the same mask as winning tickets
 
@@ -141,13 +137,6 @@ tasks[^trf1][^trf2].
   values
 * the only crucial element is the sign of the initialization
 * sometimes, specific supermasks even work without further training
-
-#### There are winning tickets also in RL and NLP[^lth-nlp]
-
-Is the lottery ticket phenomenon an artefact of supervised image
-classification with feed-forward convolutional nets nets or does it generalize to other
-domains? The results show that, both in RL and NLP, winning tickets outperform
-random tickets.
 
 
 #### Pruning and dropout
