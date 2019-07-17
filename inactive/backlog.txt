@@ -1,0 +1,21 @@
+
+#### l1 and l2 regularization terms
+
+An L1 penalty on the weights of a neural network encourages sparse weights.
+Counterintuitively, an L2 penalty leads to neural nets that
+are more amenable to pruning than nets trained with an L1 penalty.
+
+TODO: which paper was it?
+
+#### identifying winning tickets early
+
+To benefit from winning tickets at training time, it is not enough to know that a winning ticket exists.
+The holy grail is how to identify winning tickets early in the training process.
+Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
+
+[^morphnet]: Gordon, Ariel, Elad Eban, Ofir Nachum, Bo Chen, Hao Wu, Tien-Ju Yang, and Edward Choi. ["Morphnet: Fast & simple resource-constrained structure learning of deep networks."](http://openaccess.thecvf.com/content_cvpr_2018/html/Gordon_MorphNet_Fast__CVPR_2018_paper.html) In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 1586-1595. 2018.
+[^smallify]: Leclerc, Guillaume, et al. ["Smallify: Learning network size while training."](https://arxiv.org/abs/1806.03723) arXiv preprint arXiv:1806.03722 (2018). 
+
+
+These subnetworks are called *winning tickets*.
+The author's compare the trained accuracy of winning tickets against randomly initialized weights with the same structure (*random tickets*). 
