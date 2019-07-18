@@ -19,3 +19,6 @@ Dettmers and Zettlemoyer[^fromscratch] do propose such an approach already.
 
 These subnetworks are called *winning tickets*.
 The author's compare the trained accuracy of winning tickets against randomly initialized weights with the same structure (*random tickets*). 
+
+
+
