@@ -2,6 +2,7 @@
 layout: post
 author: Lukas Galke
 published: true
+
 ---
 
 #### introduction
@@ -226,7 +227,7 @@ Permute+Reinit Random ticket RSME: 6.60740392345907
 Full-model RSME: 7.780414107555133e-06
 ```
 
-We see that iterative magnitude pruning yields a winning ticket that
+We observe that iterative magnitude pruning yields a winning ticket that
 corresponds to our human intuition (or at least, it comes close).
 Please note that the [0,101] weight on the second layer irrelevant as it will only ever receive zero inputs.
 The winning ticket's accuracy with 4 weights is on par with
@@ -234,15 +235,15 @@ the accuracy of the full model with 600 weights. The randomly reinitialized
 ticket also succeeds to learn good weights (the inverted signs cancel each other out).
 In contrast, the locally permuted ticket has a dead end and cannot learn anything.
 
-What can we learn from implementing our toy example?
+What can we learn from implementing the "sum-of-two-inputs" toy example?
 
 1. We can verify our previous thought-experiment that it is possible to find a winning ticket with only four weights
    that leads comparable error as the full 600 parameter model.
 2. For this simple task, the initialization of winning tickets might be less
    important than it is in other tasks.
 3. We see that a comparison with randomly permuted tickets is dangerous. The
-   random permutation can lead to "dead ends", which may render the model
-   untrainable. This danger increases with the level of sparsity.
+   random permutation has lead to a "dead end", which may render the model
+   untrainable.
 
 #### conclusion
 
