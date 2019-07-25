@@ -7,6 +7,8 @@ published: true
 
 #### introduction
 
+**TODO:** Rework intro a bit
+
 Neural networks become larger and larger and use up to billions of parameters.
 Researchers start to quantify the effort to train these large-scale models in
 \$\$\$ amounts on cloud computing platforms and in even in tons of carbon emissions.
@@ -133,15 +135,17 @@ Is the lottery ticket phenomenon an artefact of supervised image classification 
 Yu et al.
 [^lth-nlp] could show that winning tickets also exist in reinforcement learning and natural language processing architectures.
 Their experiments include classic control problems, Atari games, LSTMs, and Transformers.
-They could find winning tickets in all settings, which suggests, that the LTH phenomenon is not restricted to supervised image classification but might be a general feature of deep neural nets.
+They could find winning tickets for all architectures, which suggests, that the LTH phenomenon is not restricted to supervised image classification but might be a general property of deep neural nets.
 
-#### are winning tickets transferable across tasks?
+#### transfer of winning tickets across tasks and importance of structure
 
 Several works have analyzed whether winning tickets are transferable across tasks within the image domain[^trf1][^trf2].
 Both works suggest that winning tickets are transferable across tasks.
 However, each makes use of a particular relaxation.
 Mehta[^trf1] relaxes late resetting to using the best weights anywhere in the training process on the source task.
 His explanation of this decision is that the purpose of transfer learning is to save training effort on the target task.
+
+**TODO: Give a bit more details**
 
 Morcos et al.[^trf2] compare against random
 tickets that are not only randomly initialized but are also randomly permuted.
@@ -197,7 +201,7 @@ We iteratively prune 25% of the weights (by magnitude) until only 2 weights are 
 In each round, we use late resetting to the weights after the first training iteration.
 We expect that the winning ticket will pass the two inputs through the first
 layer and sum them up in the second layer.
-We train on the interval [-1,1) and test on the interval [1,2).
+We train on the interval [-1,1] and test on the interval [1,2].
 We end up with the following results for the root mean squared error.
 
 ```
@@ -280,3 +284,5 @@ winning tickets that correspond to human wisdom for a simple task.
 [^ch1]: Gale, Trevor, Erich Elsen, and Sara Hooker. ["The state of sparsity in deep neural networks."](https://arxiv.org/abs/1902.09574) arXiv preprint arXiv:1902.09574 (2019).
 [^ch2]: Liu, Zhuang, Mingjie Sun, Tinghui Zhou, Gao Huang, and Trevor Darrell. ["Rethinking the value of network pruning."](https://arxiv.org/abs/1810.05270) arXiv preprint arXiv:1810.05270 (2018).
 
+
+<!-- vim: set ft=pandoc: -->
