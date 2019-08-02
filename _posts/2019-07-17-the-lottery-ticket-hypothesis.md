@@ -7,32 +7,30 @@ published: true
 
 #### introduction
 
-**TODO:** Rework intro a bit
-
 Neural networks become larger and larger and use up to billions of parameters.
 Researchers start to quantify the effort to train these large-scale models in
-\$\$\$ amounts on cloud computing platforms and in even in tons of carbon emissions.
+\$\$\$ amounts on cloud computing platforms and even in tons of carbon emissions.
 The common understanding used to be that overparametrized networks have
 more capacity but are also more prone to overfit the training data.
 Recent studies have shown that overparametrization, in fact, acts as a regularizer and lead to improved generalization performance that no other regularization technique may achieve[^arora2018].
 
 After training, however, large parts of such large-scale models can be pruned away without harming the accuracy of the model.
-Pruning techniques date back to 1990[^braindmg] with LeCun et al.'s paper on optimal brain damage.
+Pruning techniques date back to 1990 with LeCun et al.'s paper on optimal brain damage[^braindmg].
 The motivation for pruning is to reduce the model size and thus, memory requirement, inference time, and energy consumption.
 One pruning technique is *magnitude pruning*, which prunes those weights that have the lowest magnitude, and therefore, the lowest effect on the network output[^mp].
 
 Before the lottery ticket hypothesis[^lth] (LTH) the common experience was that pruned architectures were harder to train from scratch.
 Now, the LTH states that certain subnetworks can be trained to match or even outperform the accuracy of the original, unpruned network.
-The key idea is iteratively train a network and prune its parameters until only a small fraction of parameters are remaining.
+The key idea is to iteratively train a network and prune its parameters until only a small fraction of parameters are remaining.
 In each iteration, the surviving weights are reset to their values at initialization.
-The resulting subnetwork can then be trained in comparable time to match the accuracy that the original network would achieve. These subnetworks are referred to as *winning tickets*.
+The resulting subnetwork can then be trained in comparable time to match the accuracy the accuracy of original network. These subnetworks are referred to as *winning tickets*.
 
 > **The Lottery Ticket Hypothesis.** A randomly-initialized, dense neural
 > network contains a subnetwork that is initialized such that—when trained in
 > isolation—it can match the test accuracy of the original network after
 > training for at most the same number of iterations.[^lth]
 
-Their experiments show that they can find subnetworks that are only 10-20\%
+Their experiments show that they can find subnetworks that are only 10-20%
 of the size of their dense counterparts. On lower sparsity levels, these
 subnetworks could even achieve higher test accuracies than the original networks.
 
@@ -76,7 +74,7 @@ To show that winning tickets exist, Frankle and Carbin[^lth] employ the followin
    validation accuracy is met 
 
 The result is a subnetwork (given by mask m) along with its initialization, which may perform a final training pass.
-In their study\[\^lth\], the authors compare the accuracy of these winning tickets against the whole model and against random tickets.
+In their experiments on image classification[^lth], the authors compare the accuracy of these winning tickets against the whole model and against random tickets.
 Random tickets share the same structure but are re-initialized randomly before the final training pass.
 The main result is that the winning tickets consistently lead to higher scores than random tickets, and can also match or even outperform the full model.
 
@@ -85,8 +83,7 @@ The number of possible subnetworks grows exponentially with the number of
 parameters. This may be an explanation why highly overparametrized networks
 generalize better[^arora2018].
 
-#### iterative vs one-shot pruning, L1 vs L2 regularization
-
+#### iterative magnitude pruning
 
 <center>
 <figure>
@@ -97,16 +94,20 @@ Figure taken from Song et al. 2015. Pruning parameters that were trained with ei
 </figure>
 </center>
 
-The authors compare one-shot pruning, i.e. do only one pass of training, against the iterative pruning procedure described above. With iterative pruning, smaller winning tickets can be identified than with one-shot pruning. This is in-line with the results of the paper on iterative magnitude pruning\[\^mp\], but it is more expensive because it requires iterative training.
+Frankle and Carbin make use of a pruning technique proposed by Song et al.[^mp] at NeurIPS 2015.
+That is to prune those weights that have the lowest magnitude and retrain them. Song et al. have shown that, counterintuitively, magnitude pruning works better with L2 regularization as soon
+the remaining weights are retrained. They further show that iterative pruning is favorable over one-shot pruning. In one-shot pruning, you would only conduct only a single training pass and then prune the weights, whereas in iterative pruning, you would prune and train for several rounds until some criterion on sparsity or accuracy is met.
 
-#### global vs local pruning
+To validate the lottery ticket hypothesis, Frankle & Carbin ought to find subnetworks that match the accuracy of the original nets, when *trained in isolation*.
+That means that they cannot exploit the benefit from previous training rounds with the full model.
+Therefore, they modify the training and pruning procedure by resetting (non-pruned) weight values to their initializing.
 
 During pruning, one can either prune to the desired fraction of weights at each
 layer, or put the weights of all layers into one pool and prune globally.
 In the LTH paper[^lth], the authors use local pruning for LeNet and 
 Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
 VGG-19. The idea is that within deeper models, the weights of some layers might be
-more important to keep[^trf2].
+more important to keep than others'[^trf2].
 
 #### late resetting
 
@@ -119,24 +120,25 @@ Figure taken from Frankle et al. 2019. With late resetting, winning tickets can 
 </figure>
 </center>
 
-Learning rate warmup can help to find winning tickets for deeper models\[\^lth\].
-In follow-up work, the authors have introduced a different technique to deal with deeper models: late resetting\[\^lth-at-scale\].
-With late resetting, the weights are not resetted to their values before the first training iteration but to some values very early in the training process (after about one to five iterations).
-Learning rate warm-up is not necessary anymore.
-Late resetting is specifically important to find winning tickets for deeper models.
+Learning rate warmup can help to find winning tickets for deeper models[^lth].
+In follow-up work, however, the authors have introduced a different technique to deal with deeper models: late resetting[^lth-at-scale].
+With late resetting, the weights are reset to values early in the training process instead of strictly to their initial values.
+Hence, learning rate warm-up is not necessary anymore. Late resetting is specifically important to find winning tickets for deeper models.
 
 
 #### winning tickets outside of the image domain
 
 Is the lottery ticket phenomenon an artefact of supervised image classification with feed-forward convolutional nets nets or does it generalize to other domains?
-Yu et al.
-[^lth-nlp] could show that winning tickets also exist in reinforcement learning and natural language processing architectures.
+Yu et al.[^lth-nlp] could show that winning tickets also exist in reinforcement learning and natural language processing architectures.
 Their experiments include classic control problems, Atari games, LSTMs, and Transformers.
-They could find winning tickets for all architectures, which suggests, that the LTH phenomenon is not restricted to supervised image classification but might be a general property of deep neural nets.
+They managed to find winning tickets for all architectures.
+This suggests that the LTH phenomenon is not restricted to supervised image classification but might be a general property of deep neural nets.
 
 #### transfer of winning tickets and importance of structure
 
-**TODO: remove redundant info**
+So far, the procedure to identify winning tickets is still expensive as it involves several full training passes.
+How can we still benefit from the winning tickets?
+Can we transfer them to other tasks such that only a small fraction of weights need to be learned for the target task?
 
 Several works have analyzed whether winning tickets are transferable across tasks within the image domain[^trf1][^trf2].
 Both works suggest that winning tickets are transferable across tasks.
@@ -151,7 +153,6 @@ the initialization and the structure[^trf2].
 The empirical results from the original LTH paper compares against randomly
 initialized tickets with the same structure. This is more challenging than
 comparing against random tickets whose mask is also drawn at random.
-
 
 Morcos et al.[^trf2] compare against random
 tickets that are not only randomly initialized but are also randomly permuted.
@@ -266,9 +267,7 @@ To benefit from their existence, one needs to find methods to identify winning t
 Some approaches already tackle this, while others focus on training methods that make neural networks more amenable to later pruning.
 If we could identify winning tickets early or transfer them to other domains, we would save substantial amounts of training effort.
 Winning tickets sometimes even outperform the original networks, which might have implications for our understanding of and the design of architectures and their initializations.
-We can further confirm that iterative magnitude pruning succeeds to finds
-winning tickets that correspond to human wisdom for a simple task.
-
+We can further confirm that iterative magnitude pruning succeeds to finds winning tickets that correspond to human wisdom for a simple task.
 
 #### bonus material
 
