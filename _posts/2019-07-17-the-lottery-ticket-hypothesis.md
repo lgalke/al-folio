@@ -9,30 +9,40 @@ published: true
 
 Neural networks become larger and larger and use up to billions of parameters.
 Researchers start to quantify the effort to train these large-scale models in
-\$\$\$ amounts on cloud computing platforms and even in tons of carbon emissions.
-The common understanding used to be that overparametrized networks have
-more capacity but are also more prone to overfit the training data.
-Recent studies have shown that overparametrization, in fact, acts as a regularizer and lead to improved generalization performance that no other regularization technique may achieve[^arora2018].
+\$\$\$ amounts on cloud computing platforms and even in tons of carbon
+emissions. The common understanding used to be that overparametrized networks
+have more capacity but are also more prone to overfit the training data. Recent
+studies have shown that overparametrization, in fact, acts as a regularizer and
+lead to improved generalization performance that no other regularization
+technique may achieve[^arora2018].
 
-After training, however, large parts of such large-scale models can be pruned away without harming the accuracy of the model.
-Pruning techniques date back to 1990 with LeCun et al.'s paper on optimal brain damage[^braindmg].
-The motivation for pruning is to reduce the model size and thus, memory requirement, inference time, and energy consumption.
-One pruning technique is *magnitude pruning*, which prunes those weights that have the lowest magnitude, and therefore, the lowest effect on the network output[^mp].
+After training, however, large parts of such large-scale models can be pruned
+away without harming the accuracy of the model. Pruning techniques date back to
+1990 with LeCun et al.'s paper on optimal brain damage[^braindmg]. The
+motivation for pruning is to reduce the model size and thus, memory
+requirement, inference time, and energy consumption. One pruning technique is
+*magnitude pruning*, which prunes those weights that have the lowest magnitude,
+and therefore, the lowest effect on the network output[^mp].
 
-Before the lottery ticket hypothesis[^lth] (LTH) the common experience was that pruned architectures were harder to train from scratch.
-Now, the LTH states that certain subnetworks can be trained to match or even outperform the accuracy of the original, unpruned network.
-The key idea is to iteratively train a network and prune its parameters until only a small fraction of parameters are remaining.
-In each iteration, the surviving weights are reset to their values at initialization.
-The resulting subnetwork can then be trained in comparable time to match the accuracy the accuracy of original network. These subnetworks are referred to as *winning tickets*.
+Before the lottery ticket hypothesis[^lth] (LTH) the common experience was that
+pruned architectures were harder to train from scratch. Now, the LTH states
+that certain subnetworks can be trained to match or even outperform the
+accuracy of the original, unpruned network. The key idea is to iteratively
+train a network and prune its parameters until only a small fraction of
+parameters are remaining. In each iteration, the surviving weights are reset to
+their values at initialization. The resulting subnetwork can then be trained in
+comparable time to match the accuracy the accuracy of original network. These
+subnetworks are referred to as *winning tickets*.
 
 > **The Lottery Ticket Hypothesis.** A randomly-initialized, dense neural
 > network contains a subnetwork that is initialized such that—when trained in
 > isolation—it can match the test accuracy of the original network after
 > training for at most the same number of iterations.[^lth]
 
-Their experiments show that they can find subnetworks that are only 10-20%
-of the size of their dense counterparts. On lower sparsity levels, these
-subnetworks could even achieve higher test accuracies than the original networks.
+In the LTH paper, the authors have found winning tickets that are
+only 10-20% of the size of their dense counterparts. With more remaining
+parameters, the winning tickets could even achieve higher test accuracies than
+the original networks.
 
 Why is this important?
 The LTH suggests that it is not necessary to train a full-model, if we could only identify winning tickets early in the training process.
@@ -78,10 +88,18 @@ In their experiments on image classification[^lth], the authors compare the accu
 Random tickets share the same structure but are re-initialized randomly before the final training pass.
 The main result is that the winning tickets consistently lead to higher scores than random tickets, and can also match or even outperform the full model.
 
-The authors conjecture that the optimizer focuses on training the weights of a well-initialized sub-network.
-The number of possible subnetworks grows exponentially with the number of
-parameters. This may be an explanation why highly overparametrized networks
-generalize better[^arora2018].
+So, random tickets share the same structure as winning
+tickets yet winning tickets yield higher scores. This means that the
+initialization values are important for the winning tickets' success. When we
+have more parameters, we get more rolls for initialization values. We also get
+more possibilities to combine some good rolls into a sparse subnetwork. More
+precisely, with $$n$$ parameters we get $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+possible subnetworks of size $$k$$. When we increase
+$$n \to n+1$$, the number of possibilities grows with *factor* $$\frac{n+1}{n-k+1}$$. Higher numbers of parameters lead to *many* more possible subnetworks.
+
+Given these massive amounts of possibilities, how can it be that we can find the right subnetwork by pruning?
+The authors of the LTH paper conjecture that already the optimizer focuses on training the parameters of a well-initialized sub-network. This may be an alternative explanation why highly overparametrized networks
+generalize better.
 
 #### iterative magnitude pruning
 
