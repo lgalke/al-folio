@@ -33,7 +33,7 @@ google_analytics: UA-XXXXXXXXX # out your google-analytics code
 # Blog
 # -----------------------------------------------------------------------------
 blog_name: blog
-blog_description: random things will appear here
+blog_description: random articles may appear here
 
 # Pagination
 paginate: 4
