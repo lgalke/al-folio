@@ -19,7 +19,7 @@ I am a PhD student advised by [Ansgar
 Scherp](http://ansgarscherp.net) in the third year. I work at [Kiel
 University](https://www.uni-kiel.de/en) and at [ZBW -- Leibniz Information
 Centre for Economics](https://zbw.eu). In my spare time, I contribute to the
-[MTank](http://www.themtank.org/).
+[MTank](https://www.themtank.org/).
 
 My research interests comprise self-supervised learning on semi-structured data.
 In particular, that covers learning representations in text-attributed graphs.
