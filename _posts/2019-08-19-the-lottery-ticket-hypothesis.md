@@ -287,7 +287,7 @@ We can further confirm that iterative magnitude pruning succeeds to finds winnin
 
 #### bonus material
 
-* [A clean and generic pytorch implementation of (iterative) magnitude pruning](https://github.com/torch-pruning) featuring our [thought experiment](#thought-experiment-sum-of-two-inputs) to tinker around with.
+* [A clean and generic pytorch implementation of (iterative) magnitude pruning](https://github.com/lgalke/torch-pruning) featuring our [thought experiment](#thought-experiment-sum-of-two-inputs) to tinker around with.
 
 #### references
 
