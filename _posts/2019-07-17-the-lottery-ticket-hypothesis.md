@@ -18,7 +18,7 @@ technique may achieve[^arora2018].
 
 After training, however, large parts of such large-scale models can be pruned
 away without harming the accuracy of the model. Pruning techniques date back to
-1990 with LeCun et al.'s paper on optimal brain damage[^braindmg]. The
+1990 with LeCun et al.'s paper on *optimal brain damage*[^braindmg]. The
 motivation for pruning is to reduce the model size and thus, memory
 requirement, inference time, and energy consumption. One pruning technique is
 *magnitude pruning*, which prunes those weights that have the lowest magnitude,
@@ -92,10 +92,7 @@ So, random tickets share the same structure as winning
 tickets yet winning tickets yield higher scores. This means that the
 initialization values are important for the winning tickets' success. When we
 have more parameters, we get more rolls for initialization values. We also get
-more possibilities to combine some good rolls into a sparse subnetwork. More
-precisely, with $$n$$ parameters we get $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
-possible subnetworks of size $$k$$. When we increase
-$$n \to n+1$$, the number of possibilities grows with *factor* $$\frac{n+1}{n-k+1}$$. Higher numbers of parameters lead to *many* more possible subnetworks.
+more possibilities to combine a subset of good rolls into a sparse subnetwork. 
 
 Given these massive amounts of possibilities, how can it be that we can find the right subnetwork by pruning?
 The authors of the LTH paper conjecture that already the optimizer focuses on training the parameters of a well-initialized sub-network. This may be an alternative explanation why highly overparametrized networks
@@ -112,20 +109,22 @@ Figure taken from Song et al. 2015. Pruning parameters that were trained with ei
 </figure>
 </center>
 
-Frankle and Carbin make use of a pruning technique proposed by Song et al.[^mp] at NeurIPS 2015.
+Frankle and Carbin make use of a pruning technique proposed by Han et al.[^mp] at NeurIPS 2015.
 That is to prune those weights that have the lowest magnitude and retrain them. Song et al. have shown that, counterintuitively, magnitude pruning works better with L2 regularization as soon
 the remaining weights are retrained. They further show that iterative pruning is favorable over one-shot pruning. In one-shot pruning, you would only conduct only a single training pass and then prune the weights, whereas in iterative pruning, you would prune and train for several rounds until some criterion on sparsity or accuracy is met.
 
-To validate the lottery ticket hypothesis, Frankle & Carbin ought to find subnetworks that match the accuracy of the original nets, when *trained in isolation*.
-That means that they cannot exploit the benefit from previous training rounds with the full model.
-Therefore, they modify the training and pruning procedure by resetting (non-pruned) weight values to their initializing.
+To validate the lottery ticket hypothesis, Frankle & Carbin ought to find
+subnetworks that match the accuracy of the original nets, when *trained in
+isolation*. That means that they cannot exploit the benefit from previous
+training rounds with the full model. Therefore, they modify the training and
+pruning procedure by resetting (non-pruned) weight values to their
+values at initializion.
 
 During pruning, one can either prune to the desired fraction of weights at each
 layer, or put the weights of all layers into one pool and prune globally.
 In the LTH paper[^lth], the authors use local pruning for LeNet and 
 Conv-2/4/6, while they use global pruning for the deeper models: Resnet-18 and
-VGG-19. The idea is that within deeper models, the weights of some layers might be
-more important to keep than others'[^trf2].
+VGG-19. The idea is that within deeper models, the weights of some layers might be more important to keep than others'[^trf2].
 
 #### late resetting
 
@@ -152,11 +151,9 @@ Their experiments include classic control problems, Atari games, LSTMs, and Tran
 They managed to find winning tickets for all architectures.
 This suggests that the LTH phenomenon is not restricted to supervised image classification but might be a general property of deep neural nets.
 
-#### transfer of winning tickets and importance of structure
+#### transferring winning tickets
 
-So far, the procedure to identify winning tickets is still expensive as it involves several full training passes.
-How can we still benefit from the winning tickets?
-Can we transfer them to other tasks such that only a small fraction of weights need to be learned for the target task?
+So far, the procedure to identify winning tickets is still expensive as it involves several full training passes. How can we still benefit from the winning tickets? Can we transfer them to other tasks such that only a small fraction of weights need to be learned for the target task?
 
 Several works have analyzed whether winning tickets are transferable across tasks within the image domain[^trf1][^trf2].
 Both works suggest that winning tickets are transferable across tasks.
