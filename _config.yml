@@ -78,7 +78,7 @@ highlighter: pygments
 
 # Includes & excludes
 include: ['_pages']
-exclude: [vendor,bin,Gemfile,Gemfile.lock,inactive]
+exclude: [vendor,bin,Gemfile,Gemfile.lock,inactive,README.md]
 
 # Plug-ins
 plugins:
