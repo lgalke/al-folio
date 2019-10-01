@@ -257,8 +257,8 @@ We iteratively prune 25% of the weights (by magnitude) until only 2 weights are 
 In each round, we use late resetting to the weights after the first training iteration.
 We expect that the winning ticket will pass the two inputs through the first
 layer and sum them up in the second layer.
-We train on the interval [-1,1] and test on the interval [1,2].
-We end up with the following results for the root mean squared error.
+We train on random number pairs within the interval [-1,1] and test on random pairs in the interval [1,2].
+We end up with the following tickets and their obtained [root mean-squared-error](https://en.wikipedia.org/wiki/Root-mean-square_deviation) (lower is better):
 
 ```
 Pruning 0.25 weights => 4 weights still active ~= 0.67%
@@ -292,7 +292,7 @@ Full-model RSME: 7.780414107555133e-06
 
 We observe that iterative magnitude pruning yields a winning ticket that
 corresponds to our human intuition (or at least, it is quite close).
-Please note that the [0,101] weight on the second layer irrelevant as it will only ever receive zero inputs.
+Please note that the [0,101] weight on the second layer irrelevant as it will never receive any non-zero inputs.
 The winning ticket's accuracy with 4 weights is on par with
 the accuracy of the full model with 600 weights. The randomly reinitialized
 ticket also succeeds to learn good weights (the inverted signs cancel each other out).
