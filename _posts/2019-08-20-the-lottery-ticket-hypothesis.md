@@ -249,6 +249,7 @@ which helps to find winning tickets especially in deep architectures.
 #### hands-on: experiments on the sum-of-two-inputs example
 
 Before we conclude, let's return to our sum-of-two-inputs example from [above](#a-toy-example-sum-of-two-inputs).
+We implement iterative magnitude pruning and try to find winning tickets that correspond to human intuition.
 We use local pruning such that the second layer does not get pruned away
 completely.
 We begin with 200 hidden units and train for 10 epochs for each pruning round.
