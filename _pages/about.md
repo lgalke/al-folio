@@ -24,4 +24,4 @@ Centre for Economics](https://zbw.eu). In my spare time, I contribute to the
 My research interests comprise self-supervised learning on semi-structured data.
 In particular, that covers learning representations in text-attributed graphs.
 I'm most passionate about autoencoders and graph neural nets.
-Apart from neural nets, my interests include: vim, saxophone, chess, and surf.
+Apart from neural nets, my interests include: vim, saxophone, foosball, chess, and surf.
