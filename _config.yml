@@ -11,7 +11,7 @@ footer_text: >
 
 url: # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
-last_updated: 2020-12-20 # leave blank if you don't want to display last updated
+last_updated: 2021-03-01 # leave blank if you don't want to display last updated
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -33,7 +33,7 @@ google_analytics: UA-XXXXXXXXX # out your google-analytics code
 # Blog
 # -----------------------------------------------------------------------------
 blog_name: blog
-blog_description: random articles may appear here
+blog_description:
 
 # Pagination
 paginate: 4
