@@ -6,6 +6,7 @@ meta: similar version cross-published in <a href="https://towardsdatascience.com
 
 ---
 
+
 #### introduction
 
 Neural networks become larger and larger and use up to billions of parameters.
@@ -51,9 +52,11 @@ process. If this was possible, it could save us wallets of \$\$\$ and tons of
 carbon emissions. 
 
 #### thought experiment: sum of two inputs
+
+{% katexmm %}
  
-To get an intuition on the LTH, let's consider the simple task of computing the sum of two inputs $$y = x_0 + x_1 $$.
-We want to approximate the ground truth $$y$$ with a two-layer, linear neural net with $$n$$ hidden units and no bias.
+To get an intuition on the LTH, let's consider the simple task of computing the sum of two inputs $y = x_0 + x_1$.
+We want to approximate the ground truth $y$ with a two-layer, linear neural net with $n$ hidden units and no bias.
 
 $$f(x) = \sum_i^n w^{(2)}_i (w^{(1)}_{i,1} x_1 + w^{(1)}_{i,2} x_2)$$
 
@@ -62,11 +65,11 @@ $$f(x) = \sum_i^n w^{(2)}_i (w^{(1)}_{i,1} x_1 + w^{(1)}_{i,2} x_2)$$
 </center>
 
 For humans, a winning ticket for the sum of two inputs is easy to determine.
-Such a winning ticket would be $$w^{(1)}_{i,1} = w^{(1)}_{i,2} = w^{(2)}_{i} = 1$$ for some $$i$$ with all remaining weights being zero.
+Such a winning ticket would be $w^{(1)}_{i,1} = w^{(1)}_{i,2} = w^{(2)}_{i} = 1$ for some $i$ with all remaining weights being zero.
 This winning ticket would even generalize out of the training data domain, as it
 actually does compute the real sum of its two inputs.
 
-No matter how large we chose the hidden layer size $$n$$, our winning ticket will always consist of three nonzero weights.
+No matter how large we chose the hidden layer size $n$, our winning ticket will always consist of three nonzero weights.
 Thus, we can prune all but those three weights without harming accuracy.
 An alternative would be that the input values are passed through the first layer and summed up in the second layer, which would need four weights in total.
 When we start training with a mask for those three (or four) nonzero connections, the network will eventually learn the correct weights.
@@ -75,11 +78,11 @@ When we start training with a mask for those three (or four) nonzero connections
 
 To show that winning tickets exist, Frankle and Carbin[^lth] employ the following procedure, which they label *iterative magnitude pruning*:
 
-1. Initialize model with parameters $$\theta_0$$ along with a mask $$m$$ set to 
+1. Initialize model with parameters $\theta_0$ along with a mask $m$ set to 
    all ones
-2. Train the (masked) model for $$j$$ iterations 
-3. Prune the lowest magnitude parameters and update $$m$$ accordingly.
-4. Reset $$\theta[m]$$ to their values in $$\theta_0$$ and fix all other
+2. Train the (masked) model for $j$ iterations 
+3. Prune the lowest magnitude parameters and update $m$ accordingly.
+4. Reset $\theta[m]$ to their values in $\theta_0$ and fix all other
    parameters to zero.
 5. Repeat from step 2 unless stopping criterion on sparsity or
    validation accuracy is met 
@@ -98,6 +101,8 @@ a well-initialized sub-network. Why do e need to start with a big model in the
 first place? The idea is that we get more possible combinations of subnetworks
 when you have more parameters in total. This may be an alternative explanation
 why highly overparametrized networks generalize better.
+
+{% endkatexmm %}
 
 #### iterative magnitude pruning
 
@@ -329,6 +334,7 @@ to human wisdom for a simple toy task.
 #### bonus material
 
 * [A clean and generic pytorch implementation of (iterative) magnitude pruning](https://github.com/lgalke/torch-pruning) featuring our [thought experiment](#thought-experiment-sum-of-two-inputs) to tinker around with.
+
 
 #### references
 

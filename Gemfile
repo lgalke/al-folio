@@ -7,4 +7,6 @@ group :jekyll_plugins do
     gem 'jekyll-scholar'
     gem 'jemoji'
     gem 'unicode_utils'
+    # added to fix maths
+    gem 'jekyll-katex'
 end

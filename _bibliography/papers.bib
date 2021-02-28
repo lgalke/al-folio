@@ -2,6 +2,16 @@
 ---
 
 
+@article{galke2020incremental,
+        title = {Incremental Training of Graph Neural Networks on Temporal Graphs under Distribution Shift},
+        abstract = {Current graph neural networks (GNNs) are promising, especially when the entire graph is known for training. However, it is not yet clear how to efficiently train GNNs on temporal graphs, where new vertices, edges, and even classes appear over time. We face two challenges: First, shifts in the label distribution (including the appearance of new labels), which require adapting the model. Second, the growth of the graph, which makes it, at some point, infeasible to train over all vertices and edges. We address these issues by applying a sliding window technique, i.e., we incrementally train GNNs on limited window sizes and analyze their performance. For our experiments, we have compiled three new temporal graph datasets based on scientific publications and evaluate isotropic and anisotropic GNN architectures. Our results show that both GNN types provide good results even for a window size of just 1 time step. With window sizes of 3 to 4 time steps, GNNs achieve at least 95% accuracy compared to using the entire timeline of the graph. With window sizes of 6 or 8, at least 99% accuracy could be retained. These discoveries have direct consequences for training GNNs over temporal graphs.},
+        author = {Galke, Lukas and Vagliano, Iacopo, and Scherp, Ansgar},
+        booktitle = {Preprint},
+        arxiv = {2006.14422},
+        code = {https://github.com/lgalke/Incremental-GNNs},
+        year = {2020}
+}
+
 @inproceedings{galke2019graph,
 	abstract = {Large-scale graph data in real-world applications is often not static but dynamic, i. e., new nodes and edges appear over time. Current graph convolution approaches are promising, especially, when all the graph{\rq}s nodes and edges are available during training. When unseen nodes and edges are inserted after training, it is not yet evaluated whether up-training or re-training from scratch is preferable. We construct an experimental setup, in which we insert previously unseen nodes and edges after training and conduct a limited amount of inference epochs. In this setup, we compare adapting pretrained graph neural networks against retraining from scratch. Our results show that pretrained models yield high accuracy scores on the unseen nodes and that pretraining is preferable over retraining from scratch. Our experiments represent a first step to evaluate and develop truly online variants of graph neural networks.},
 	arxiv = {1905.06018},
